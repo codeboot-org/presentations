@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://codeboot.org/4.0.0/codeboot.bundle.css">
+  <script src="https://codeboot.org/4.0.0/codeboot.bundle.js"></script>
+  <title>Computing the squares of the integers between 1 and 5</title>
+</head>
+
+<body>
+
+
+<h3>Ways to compute the squares of the integers between 1 and 5</h3>
+
+
+<p>On this page <b>click on the code samples to execute them.</b></p>
+
+<ol>
+
+
+<li>
+<p>The <samp>for</samp> loop combined with the <samp>range</samp> function
+is the most direct approach:</p>
+
+<!-- Automatic animation due to the data-cb="a" -->
+<pre style="width:32em; height:3.8em" data-cb="a">
+for i in range(1, 6):
+    print(i**2)
+</pre>
+
+<li>
+<p>It is also possible to combine a <samp>while</samp> loop with the
+incrementation of a variable at each iteration of the loop:</p>
+
+<!-- Fast animation due to the data-cb="~animationSpeed=fast.a" -->
+<pre style="width:32em; height:6.5em" data-cb="~animationSpeed=fast.a">
+i = 1
+while i &lt;= 5:
+    print(i**2)
+    i = i + 1
+</pre>
+
+
+<li>
+<p>The order of the values can be reversed by using a decrementation:</p>
+
+<!-- Automatic animation with a large font due to the data-cb="~largeFont=true.a" -->
+<pre style="width:32em; height:6.5em" data-cb="~largeFont=true.a">
+i = 5
+while i &gt; 0:
+    print(i**2)
+    i = i - 1
+</pre>
+
+
+<li>
+<p>Summing the odd integers with a <samp>while</samp> loop reaches the
+same result without using the <samp>**</samp> operator:
+
+<!-- Automatic execution with a pause after 45 steps due to the data-cb="e45" -->
+<pre style="width:32em; height:9.3em" data-cb="e45">
+i = 1
+n = 1
+while i &lt; 10:
+    print(n)
+    i = i + 2
+    n = n + i
+</pre>
+
+
+<li>
+<p>A recursive function is another approach which has
+a certain similarity with the <samp>while</samp> loop: </p>
+
+<!-- Automatic execution with a pause after 34 steps due to the data-cb="e34" -->
+<pre style="width:32em; height:9.3em" data-cb="e34">
+def f(i, n):
+    if i &lt; 10:
+        print(n)
+        f(i + 2, n + i + 2)
+
+f(1, 1)
+</pre>
+
+
+<li>
+<p>Using the functional programming approach a solution in one line
+is possible:</p>
+
+<!-- Automatic complete execution due to the data-cb="e" -->
+<pre style="width:32em; height:2.6em" data-cb="e">
+list(map(lambda i: print((i+1)**2), range(5)))
+</pre>
+
+
+<li>
+<p>The previous approaches have the merit of a certain generality which
+the following solution lacks:</p>
+
+<!-- The user must start the execution manually -->
+<pre style="width:32em; height:7.9em" data-cb="">
+print(1)
+print(4)
+print(9)
+print(16)
+print(25)
+</pre>
+
+
+<li>
+<p>The results could also be drawn using the turtle metaphor:</p>
+
+<!-- Automatic execution with a pause after 1252 steps due to the data-cb="e1252" -->
+<pre style="width:32em; height:49.5em" data-cb="e1252">
+# This program uses the turtle to draw the
+# numbers using 7 segments.
+
+from turtle import hop, lt, rt, fd, pensize
+
+dist = 20  # length of each segment
+
+segments = {  # the 7 segments of each symbol
+    ' ':0,
+    '0':63, '1':12,  '2':118, '3':94,  '4':77,
+    '5':91, '6':123, '7':14,  '8':127, '9':95
+}
+
+def print_char(c):  # draw a symbol
+    lt(90)
+    hop(); fd(dist)
+    bits = segments[c]  # each bit = 1 segment
+    for i in range(7):
+        if (bits &amp; 1) == 0: hop()
+        fd(dist)
+        bits &gt;&gt;= 1
+        if i != 2: rt(90)
+    hop(); fd(dist)
+    lt(90)
+    hop(); fd(dist/2)
+
+def print(n):  # print a number
+    for c in str(n):
+        print_char(c)
+    print_char(' ')
+
+hop(); fd(-175); pensize(5)
+
+for i in range(1, 6):  # compute the squares
+    print(i**2)
+</pre>
+
+
+</ol>
+
+
+<div style="background: #CEE5FD; overflow-x: hidden">
+<center><h2>HTML code for the above page</h2></center>
+<center>(see <a href="https://github.com/codeboot-org/presentation/tree/main/html/direct/fr">https://github.com/codeboot-org/presentation/tree/main/html/direct/en</a>)</center>
+<code style="color:rgb(1, 1, 1);font-size:18px;font-family:&quot;Consolas&quot;,&quot;Monaco&quot;,&quot;Courier New&quot;,monospace;white-space:pre;font-weight:400;"><span style="color:rgb(85, 85, 85);">&#60;!DOCTYPE&nbsp;html&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">html</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">lang</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;en&#34;</span><span>&#62;</span><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">head</span><span>&#62;</span><br/><span>&nbsp;&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">meta</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">charset</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;utf-8&#34;</span><span>&#62;</span><br/><span>&nbsp;&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">link</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">rel</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;stylesheet&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">href</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;https://codeboot.org/4.0.0/codeboot.bundle.css&#34;</span><span>&#62;</span><br/><span>&nbsp;&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">script</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">src</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;https://codeboot.org/4.0.0/codeboot.bundle.js&#34;</span><span>&#62;</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">script</span><span>&#62;</span><br/><span>&nbsp;&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">title</span><span>&#62;</span><span>Computing&nbsp;the&nbsp;squares&nbsp;of&nbsp;the&nbsp;integers&nbsp;between&nbsp;1&nbsp;and&nbsp;5</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">title</span><span>&#62;</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">head</span><span>&#62;</span><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">body</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">h3</span><span>&#62;</span><span>Ways&nbsp;to&nbsp;compute&nbsp;the&nbsp;squares&nbsp;of&nbsp;the&nbsp;integers&nbsp;between&nbsp;1&nbsp;and&nbsp;5</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">h3</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>On&nbsp;this&nbsp;page&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">b</span><span>&#62;</span><span>click&nbsp;on&nbsp;the&nbsp;code&nbsp;samples&nbsp;to&nbsp;execute&nbsp;them.</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">b</span><span>&#62;</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">ol</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>The&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>for</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>loop&nbsp;combined&nbsp;with&nbsp;the&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>range</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>function</span><br/><span>is&nbsp;the&nbsp;most&nbsp;direct&nbsp;approach:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;animation&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;a&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:3.8em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;a&#34;</span><span>&#62;</span><br/><span>for&nbsp;i&nbsp;in&nbsp;range(1,&nbsp;6):</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(i**2)</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>It&nbsp;is&nbsp;also&nbsp;possible&nbsp;to&nbsp;combine&nbsp;a&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>while</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>loop&nbsp;with&nbsp;the</span><br/><span>incrementation&nbsp;of&nbsp;a&nbsp;variable&nbsp;at&nbsp;each&nbsp;iteration&nbsp;of&nbsp;the&nbsp;loop:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Fast&nbsp;animation&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;~animationSpeed=fast.a&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:6.5em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;~animationSpeed=fast.a&#34;</span><span>&#62;</span><br/><span>i&nbsp;=&nbsp;1</span><br/><span>while&nbsp;i&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;lt;</span><span>=&nbsp;5:</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(i**2)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>i&nbsp;=&nbsp;i&nbsp;+&nbsp;1</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>The&nbsp;order&nbsp;of&nbsp;the&nbsp;values&nbsp;can&nbsp;be&nbsp;reversed&nbsp;by&nbsp;using&nbsp;a&nbsp;decrementation:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;animation&nbsp;with&nbsp;a&nbsp;large&nbsp;font&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;~largeFont=true.a&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:6.5em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;~largeFont=true.a&#34;</span><span>&#62;</span><br/><span>i&nbsp;=&nbsp;5</span><br/><span>while&nbsp;i&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;gt;</span><span>&nbsp;</span><span>0:</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(i**2)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>i&nbsp;=&nbsp;i&nbsp;-&nbsp;1</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>Summing&nbsp;the&nbsp;odd&nbsp;integers&nbsp;with&nbsp;a&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>while</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>loop&nbsp;reaches&nbsp;the</span><br/><span>same&nbsp;result&nbsp;without&nbsp;using&nbsp;the&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>**</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>operator:</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;execution&nbsp;with&nbsp;a&nbsp;pause&nbsp;after&nbsp;45&nbsp;steps&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;e45&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:9.3em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;e45&#34;</span><span>&#62;</span><br/><span>i&nbsp;=&nbsp;1</span><br/><span>n&nbsp;=&nbsp;1</span><br/><span>while&nbsp;i&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;lt;</span><span>&nbsp;</span><span>10:</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(n)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>i&nbsp;=&nbsp;i&nbsp;+&nbsp;2</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>n&nbsp;=&nbsp;n&nbsp;+&nbsp;i</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>A&nbsp;recursive&nbsp;function&nbsp;is&nbsp;another&nbsp;approach&nbsp;which&nbsp;has</span><br/><span>a&nbsp;certain&nbsp;similarity&nbsp;with&nbsp;the&nbsp;</span><span>&#60;</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>while</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">samp</span><span>&#62;</span><span>&nbsp;</span><span>loop:&nbsp;</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;execution&nbsp;with&nbsp;a&nbsp;pause&nbsp;after&nbsp;34&nbsp;steps&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;e34&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:9.3em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;e34&#34;</span><span>&#62;</span><br/><span>def&nbsp;f(i,&nbsp;n):</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>if&nbsp;i&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;lt;</span><span>&nbsp;</span><span>10:</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(n)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>f(i&nbsp;+&nbsp;2,&nbsp;n&nbsp;+&nbsp;i&nbsp;+&nbsp;2)</span><br/><br/><span>f(1,&nbsp;1)</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>Using&nbsp;the&nbsp;functional&nbsp;programming&nbsp;approach&nbsp;a&nbsp;solution&nbsp;in&nbsp;one&nbsp;line</span><br/><span>is&nbsp;possible:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;complete&nbsp;execution&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;e&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:2.6em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;e&#34;</span><span>&#62;</span><br/><span>list(map(lambda&nbsp;i:&nbsp;print((i+1)**2),&nbsp;range(5)))</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>The&nbsp;previous&nbsp;approaches&nbsp;have&nbsp;the&nbsp;merit&nbsp;of&nbsp;a&nbsp;certain&nbsp;generality&nbsp;which</span><br/><span>the&nbsp;following&nbsp;solution&nbsp;lacks:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;The&nbsp;user&nbsp;must&nbsp;start&nbsp;the&nbsp;execution&nbsp;manually&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:7.9em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;&#34;</span><span>&#62;</span><br/><span>print(1)</span><br/><span>print(4)</span><br/><span>print(9)</span><br/><span>print(16)</span><br/><span>print(25)</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">li</span><span>&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><span>The&nbsp;results&nbsp;could&nbsp;also&nbsp;be&nbsp;drawn&nbsp;using&nbsp;the&nbsp;turtle&nbsp;metaphor:</span><span>&#60;/</span><span style="color:rgb(17, 119, 0);">p</span><span>&#62;</span><br/><br/><span style="color:rgb(170, 85, 0);">&#60;!--&nbsp;Automatic&nbsp;execution&nbsp;with&nbsp;a&nbsp;pause&nbsp;after&nbsp;1252&nbsp;steps&nbsp;due&nbsp;to&nbsp;the&nbsp;data-cb=&#34;e1252&#34;&nbsp;--&#62;</span><br/><span>&#60;</span><span style="color:rgb(17, 119, 0);">pre</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">style</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;width:32em;&nbsp;height:49.5em&#34;</span><span>&nbsp;</span><span style="color:rgb(0, 0, 204);">data-cb</span><span>=</span><span style="color:rgb(170, 17, 17);">&#34;e1252&#34;</span><span>&#62;</span><br/><span>#&nbsp;This&nbsp;program&nbsp;uses&nbsp;the&nbsp;turtle&nbsp;to&nbsp;draw&nbsp;the</span><br/><span>#&nbsp;numbers&nbsp;using&nbsp;7&nbsp;segments.</span><br/><br/><span>from&nbsp;turtle&nbsp;import&nbsp;hop,&nbsp;lt,&nbsp;rt,&nbsp;fd,&nbsp;pensize</span><br/><br/><span>dist&nbsp;=&nbsp;20&nbsp;&nbsp;#&nbsp;length&nbsp;of&nbsp;each&nbsp;segment</span><br/><br/><span>segments&nbsp;=&nbsp;{&nbsp;&nbsp;#&nbsp;the&nbsp;7&nbsp;segments&nbsp;of&nbsp;each&nbsp;symbol</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&#39;&nbsp;&#39;:0,</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&#39;0&#39;:63,&nbsp;&#39;1&#39;:12,&nbsp;&nbsp;&#39;2&#39;:118,&nbsp;&#39;3&#39;:94,&nbsp;&nbsp;&#39;4&#39;:77,</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&#39;5&#39;:91,&nbsp;&#39;6&#39;:123,&nbsp;&#39;7&#39;:14,&nbsp;&nbsp;&#39;8&#39;:127,&nbsp;&#39;9&#39;:95</span><br/><span>}</span><br/><br/><span>def&nbsp;print_char(c):&nbsp;&nbsp;#&nbsp;draw&nbsp;a&nbsp;symbol</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>lt(90)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>hop();&nbsp;fd(dist)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>bits&nbsp;=&nbsp;segments[c]&nbsp;&nbsp;#&nbsp;each&nbsp;bit&nbsp;=&nbsp;1&nbsp;segment</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>for&nbsp;i&nbsp;in&nbsp;range(7):</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>if&nbsp;(bits&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;amp;</span><span>&nbsp;</span><span>1)&nbsp;==&nbsp;0:&nbsp;hop()</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>fd(dist)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>bits&nbsp;</span><span style="color:rgb(34, 17, 153);">&#38;gt;</span><span style="color:rgb(34, 17, 153);">&#38;gt;</span><span>=&nbsp;1</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>if&nbsp;i&nbsp;!=&nbsp;2:&nbsp;rt(90)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>hop();&nbsp;fd(dist)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>lt(90)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>hop();&nbsp;fd(dist/2)</span><br/><br/><span>def&nbsp;print(n):&nbsp;&nbsp;#&nbsp;print&nbsp;a&nbsp;number</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>for&nbsp;c&nbsp;in&nbsp;str(n):</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print_char(c)</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print_char(&#39;&nbsp;&#39;)</span><br/><br/><span>hop();&nbsp;fd(-175);&nbsp;pensize(5)</span><br/><br/><span>for&nbsp;i&nbsp;in&nbsp;range(1,&nbsp;6):&nbsp;&nbsp;#&nbsp;compute&nbsp;the&nbsp;squares</span><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>print(i**2)</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">pre</span><span>&#62;</span><br/><br/><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">ol</span><span>&#62;</span><br/><br/><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">body</span><span>&#62;</span><br/><span>&#60;/</span><span style="color:rgb(17, 119, 0);">html</span><span>&#62;</span></code>
+</div>
+
+</body>
+</html>
